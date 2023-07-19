@@ -10,3 +10,9 @@ class RentPage:
 
     def fill_second_name_field(self, second_name):
         self.driver.find_element(*RentLocators.SECOND_NAME_FIELD).send_keys(second_name)
+
+    def fill_address_field(self, address):
+        self.driver.find_element(*RentLocators.ADDRESS_FIELD).send_keys(address)
+
+    def fill_metro_field(self):
+        self.driver.find_element(*RentLocators.METRO_FIELD).click()
