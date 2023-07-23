@@ -81,3 +81,7 @@ class RentPage:
 
     def check_click_on_yandex_logo(self):
         assert self.driver.current_url == 'https://dzen.ru/?yredirect=true'
+
+    def switch_window(self):
+        all_tabs = self.driver.window_handles
+        self.driver.switch_to.window(all_tabs[1])

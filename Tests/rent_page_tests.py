@@ -10,6 +10,7 @@ class TestRent:
     address = 'Черкизовская д.123'
     comment = 'Домофон не работает'
     order_page = 'https://qa-scooter.praktikum-services.ru/order'
+    yandex_page = 'https://dzen.ru/?yredirect=true'
 
     def test_rent_from_header_button(self, driver):
         rent_page = RentPage(driver)
@@ -62,9 +63,6 @@ class TestRent:
         driver.get(self.order_page)
         check_click_on_logo = RentPage(driver)
         check_click_on_logo.click_on_yandex_logo()
-        WebDriverWait(driver, 10).until(EC.url_changes(self.order_page))
-        current_url = driver.current_url
-        print("Текущий URL страницы:", current_url)
-        # check_click_on_logo.check_click_on_yandex_logo()
-
-
+        check_click_on_logo.switch_window()
+        WebDriverWait(driver, 10).until(EC.url_contains(self.yandex_page))
+        check_click_on_logo.check_click_on_yandex_logo()
