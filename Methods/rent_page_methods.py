@@ -9,10 +9,10 @@ class RentPage:
         self.driver = driver
 
     def open_rent_from_header_button(self):
-        self.driver.find_element(*MainPageLocators.order_button_from_header).click()
+        self.driver.find_element(*MainPageLocators.ORDER_BUTTON_FROM_HEADER).click()
 
     def open_rent_from_body_button(self):
-        self.driver.find_element(*MainPageLocators.order_button_from_body).click()
+        self.driver.find_element(*MainPageLocators.ORDER_BUTTON_FROM_BODY).click()
 
     def fill_name_field(self, name):
         self.driver.find_element(*RentLocators.NAME_FIELD).send_keys(name)
