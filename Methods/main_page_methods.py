@@ -1,8 +1,5 @@
-import time
-
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.wait import WebDriverWait
+from Questions.qusestions import list_of_answers
 
 from Locators.main_page_locators import MainPageLocators
 
@@ -15,12 +12,14 @@ class MainPage:
         element = self.driver.find_element(*MainPageLocators.QUESTS_BLOCK)
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
-    def click_on_question(self):
-        for index in range(8):
-            element_id = f'accordion__heading-{index}'
-            self.driver.find_element(By.ID, element_id).click()
-            time.sleep(1)
-
     def click_on_cookies(self):
         self.driver.find_element(*MainPageLocators.COOKIES).click()
 
+    def click_on_question(self, index):
+        question_id = f'accordion__heading-{index}'
+        answer_id = f'accordion__panel-{index}'
+
+        self.driver.find_element(By.ID, question_id).click()
+        expected_text = list_of_answers[index]
+        actual_text = self.driver.find_element(By.ID, answer_id).text
+        assert actual_text == expected_text
