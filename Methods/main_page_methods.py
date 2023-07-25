@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.common.by import By
 from Questions.qusestions import list_of_answers
 
@@ -8,13 +9,16 @@ class MainPage:
     def __init__(self, driver):
         self.driver = driver
 
+    @allure.step('Скролл вниз')
     def scroll_down(self):
         element = self.driver.find_element(*MainPageLocators.QUESTS_BLOCK)
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
+    @allure.step('Клик по кукам')
     def click_on_cookies(self):
         self.driver.find_element(*MainPageLocators.COOKIES).click()
 
+    @allure.step('Проверка соответствия вопросов с ответами')
     def click_on_question(self, index):
         question_id = f'accordion__heading-{index}'
         answer_id = f'accordion__panel-{index}'

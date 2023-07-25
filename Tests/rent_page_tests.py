@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from Methods.rent_page_methods import RentPage
@@ -12,6 +13,7 @@ class TestRent:
     order_page = 'https://qa-scooter.praktikum-services.ru/order'
     yandex_page = 'https://dzen.ru/?yredirect=true'
 
+    @allure.title('Заполнение формы аренды через кнопку заказа в хедере')
     def test_rent_from_header_button(self, driver):
         rent_page = RentPage(driver)
         rent_page.open_rent_from_header_button()
@@ -25,6 +27,7 @@ class TestRent:
         rent_page.click_on_next_button()
         rent_page.check_about_rent_form()
 
+    @allure.title('Заполнение формы аренды через кнопку заказа в теле')
     def test_rent_from_body_button(self, driver):
         rent_page = RentPage(driver)
         rent_page.open_rent_from_header_button()
@@ -38,6 +41,7 @@ class TestRent:
         rent_page.click_on_next_button()
         rent_page.check_about_rent_form()
 
+    @allure.title('Заполнение формы куда привезти')
     def test_about_rent_page(self, driver):
         driver.get(self.order_page)
         rent_about_page = TestRent()
@@ -53,12 +57,14 @@ class TestRent:
         rent_about_page.click_on_yes_button()
         rent_about_page.check_success_text()
 
+    @allure.title('Проверка клика по лого самокат')
     def test_click_on_scooter_logo(self, driver):
         driver.get(self.order_page)
         check_click_on_logo = RentPage(driver)
         check_click_on_logo.click_on_scooter_logo()
         check_click_on_logo.check_click_on_scooter_logo()
 
+    @allure.title('Проверка клика по лого яндекс')
     def test_click_on_yandex_logo(self, driver):
         driver.get(self.order_page)
         check_click_on_logo = RentPage(driver)
