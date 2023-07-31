@@ -1,7 +1,6 @@
 import allure
 from selenium.webdriver.common.by import By
 from Questions.qusestions import list_of_answers
-
 from Locators.main_page_locators import MainPageLocators
 
 

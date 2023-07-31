@@ -1,4 +1,5 @@
 import allure
+import pytest
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from Methods.rent_page_methods import RentPage
@@ -13,39 +14,22 @@ class TestRent:
     order_page = 'https://qa-scooter.praktikum-services.ru/order'
     yandex_page = 'https://dzen.ru/?yredirect=true'
 
-    @allure.title('Заполнение формы аренды через кнопку заказа в хедере')
-    def test_rent_from_header_button(self, driver):
+    @allure.title('Заполнение формы аренды')
+    @pytest.mark.parametrize("entry_point", ["header", "body"])
+    def test_rent_form(self, driver, entry_point):
         rent_page = RentPage(driver)
-        rent_page.open_rent_from_header_button()
-        rent_page.fill_name_field(self.name)
-        rent_page.fill_second_name_field(self.second_name)
-        rent_page.fill_address_field(self.address)
-        rent_page.click_on_metro_field()
-        rent_page.check_metro_station()
-        rent_page.enter_on_metro_station()
-        rent_page.fill_phone_field(self.phone)
-        rent_page.click_on_next_button()
-        rent_page.check_about_rent_form()
-
-    @allure.title('Заполнение формы аренды через кнопку заказа в теле')
-    def test_rent_from_body_button(self, driver):
-        rent_page = RentPage(driver)
-        rent_page.open_rent_from_header_button()
-        rent_page.fill_name_field(self.name)
-        rent_page.fill_second_name_field(self.second_name)
-        rent_page.fill_address_field(self.address)
-        rent_page.click_on_metro_field()
-        rent_page.check_metro_station()
-        rent_page.enter_on_metro_station()
-        rent_page.fill_phone_field(self.phone)
-        rent_page.click_on_next_button()
+        if entry_point == "header":
+            rent_page.open_rent_from_header_button()
+        elif entry_point == "body":
+            rent_page.open_rent_from_body_button()
+        rent_page.fill_about_form(self.name, self.second_name, self.address, self.phone)
         rent_page.check_about_rent_form()
 
     @allure.title('Заполнение формы куда привезти')
     def test_about_rent_page(self, driver):
         driver.get(self.order_page)
         rent_about_page = TestRent()
-        rent_about_page.test_rent_from_body_button(driver)
+        rent_about_page.test_rent_form(driver)
         rent_about_page = RentPage(driver)
         rent_about_page.click_on_calendar()
         rent_about_page.enter_date_in_calendar()
