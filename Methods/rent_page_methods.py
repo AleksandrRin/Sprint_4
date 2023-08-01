@@ -2,11 +2,12 @@ import allure
 from selenium.webdriver import Keys
 from Locators.rent_page_locators import RentLocators
 from Locators.main_page_locators import MainPageLocators
+from Methods.base_page_methods import BasePage
 
 
-class RentPage:
-    def __init__(self, driver):
-        self.driver = driver
+class RentPage(BasePage):
+    # def __init__(self, driver):
+    #     self.driver = driver
 
     @allure.step('Нажатие на кнопку заказать в хедере')
     def open_rent_from_header_button(self):
@@ -65,22 +66,22 @@ class RentPage:
     def click_on_scooter_logo(self):
         self.driver.find_element(*MainPageLocators.LOGO_SCOOTER).click()
 
-    @allure.step('Проверка перехода на главную')
-    def check_click_on_scooter_logo(self):
-        assert self.driver.find_element(*MainPageLocators.ORDER_BUTTON_FROM_HEADER).is_displayed()
+    # @allure.step('Проверка перехода на главную')
+    # def check_click_on_scooter_logo(self):
+    #     assert self.driver.find_element(*MainPageLocators.ORDER_BUTTON_FROM_HEADER).is_displayed()
 
     @allure.step('Клик по кнопке яндекс')
     def click_on_yandex_logo(self):
         self.driver.find_element(*MainPageLocators.LOGO_YANDEX).click()
 
-    @allure.step('Проверка перехода на главную страницу яндекса')
-    def check_click_on_yandex_logo(self):
-        assert self.driver.current_url == 'https://dzen.ru/?yredirect=true'
+    # @allure.step('Проверка перехода на главную страницу яндекса')
+    # def check_click_on_yandex_logo(self):
+    #     assert self.driver.current_url == 'https://dzen.ru/?yredirect=true'
 
-    @allure.step('Переключение на вторую вкладку')
-    def switch_window(self):
-        all_tabs = self.driver.window_handles
-        self.driver.switch_to.window(all_tabs[1])
+    # @allure.step('Переключение на вторую вкладку')
+    # def switch_window(self):
+    #     all_tabs = self.driver.window_handles
+    #     self.driver.switch_to.window(all_tabs[1])
 
     @allure.step("Заполнение формы аренды")
     def fill_about_form(self, name, second_name, address, phone):
