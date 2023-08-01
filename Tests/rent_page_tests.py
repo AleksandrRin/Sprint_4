@@ -29,7 +29,8 @@ class TestRent:
     def test_about_rent_page(self, driver):
         driver.get(self.order_page)
         rent_about_page = TestRent()
-        rent_about_page.test_rent_form(driver)
+        entry_point = "header"
+        rent_about_page.test_rent_form(driver, entry_point)
         rent_about_page = RentPage(driver)
         rent_about_page.click_on_calendar()
         rent_about_page.enter_date_in_calendar()

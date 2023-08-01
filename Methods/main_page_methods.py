@@ -6,13 +6,6 @@ from Locators.main_page_locators import MainPageLocators
 
 
 class MainPage(BasePage):
-    # def __init__(self, driver):
-    #     self.driver = driver
-
-    # @allure.step('Скролл вниз')
-    # def scroll_down(self):
-    #     element = self.driver.find_element(*MainPageLocators.QUESTS_BLOCK)
-    #     self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
     @allure.step('Клик по кукам')
     def click_on_cookies(self):
