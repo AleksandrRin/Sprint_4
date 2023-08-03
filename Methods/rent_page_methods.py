@@ -14,8 +14,8 @@ class RentPage(BasePage):
 
     @allure.step('Нажатие на кнопку заказать в теле')
     def open_rent_from_body_button(self):
-        item = self.driver.find_element(*MainPageLocators.ORDER_BUTTON_FROM_BODY)
-        self.driver.execute_script("arguments[0].scrollIntoView();", item)
+        element = self.driver.find_element(*MainPageLocators.ORDER_BUTTON_FROM_BODY)
+        self.scroll(element)
         self.driver.find_element(*MainPageLocators.ORDER_BUTTON_FROM_BODY).click()
 
     @allure.step('Клик на поле календарь')

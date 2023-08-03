@@ -20,3 +20,11 @@ class MainPage(BasePage):
         expected_text = list_of_answers[index]
         actual_text = self.driver.find_element(By.ID, answer_id).text
         assert actual_text == expected_text
+
+    @allure.step('Проверка перехода на главную')
+    def check_click_on_scooter_logo(self):
+        assert self.driver.find_element(*MainPageLocators.ORDER_BUTTON_FROM_HEADER).is_displayed()
+
+    @allure.step('Проверка перехода на главную страницу яндекса')
+    def check_click_on_yandex_logo(self):
+        assert self.driver.current_url == 'https://dzen.ru/?yredirect=true'

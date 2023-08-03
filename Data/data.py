@@ -1,0 +1,7 @@
+name = 'Александр'
+second_name = 'Петров'
+phone = '88005553535'
+address = 'Черкизовская д.123'
+comment = 'Домофон не работает'
+order_page = 'https://qa-scooter.praktikum-services.ru/order'
+yandex_page = 'https://dzen.ru/?yredirect=true'
